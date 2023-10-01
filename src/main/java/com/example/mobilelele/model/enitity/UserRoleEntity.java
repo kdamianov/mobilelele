@@ -8,7 +8,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "roles")
-public class UserRoleEntity extends BaseEntity{
+public class UserRoleEntity{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "name")
     private Role role;
