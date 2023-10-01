@@ -31,4 +31,12 @@ public class BrandEntity extends BaseEntity {
     public void setModels(List<ModelEntity> models) {
         this.models = models;
     }
+
+    @Override
+    public String toString() {
+        return "BrandEntity{" +
+                "name='" + name + '\'' +
+                ", models=" + models +
+                '}';
+    }
 }

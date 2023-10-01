@@ -16,7 +16,7 @@ public class ModelEntity extends BaseEntity {
     @Column(name = "image_url", columnDefinition = "VARCHAR(512)", nullable = false)
     private String imageUrl;
 
-    @Column(name = "start_year")
+    @Column(name = "start_year", nullable = false)
     private Integer startYear;
 
     @Column(name = "end_year")
@@ -74,5 +74,17 @@ public class ModelEntity extends BaseEntity {
 
     public void setBrand(BrandEntity brand) {
         this.brand = brand;
+    }
+
+    @Override
+    public String toString() {
+        return "ModelEntity{" +
+                "name='" + name + '\'' +
+                ", category=" + category +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", startYear=" + startYear +
+                ", endYear=" + endYear +
+                ", brand=" + (brand != null ? brand.getName() : null) + //избягваме безкраен цикъл!
+                '}';
     }
 }
