@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "roles")
 public class UserRoleEntity extends BaseEntity{
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @Column(name = "name")
     private Role role;
     @OneToMany(mappedBy = "role" , fetch = FetchType.EAGER, cascade = CascadeType.ALL)
