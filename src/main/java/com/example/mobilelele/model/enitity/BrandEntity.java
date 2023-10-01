@@ -24,13 +24,6 @@ public class BrandEntity extends BaseEntity {
         this.name = name;
     }
 
-    public List<ModelEntity> getModels() {
-        return models;
-    }
-
-    public void setModels(List<ModelEntity> models) {
-        this.models = models;
-    }
 
     @Override
     public String toString() {
