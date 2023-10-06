@@ -3,13 +3,24 @@ package com.example.mobilelele.model.enitity;
 import com.example.mobilelele.model.enums.Engine;
 import com.example.mobilelele.model.enums.Transmission;
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Entity
 @Table(name = "offers")
-public class Offer extends BaseEntity {
+public class OfferEntity extends BaseEntity {
 
+//    @Id
+//    @GeneratedValue(generator = "UUID")
+//    @GenericGenerator(
+//            name = "UUID",
+//            strategy = "org.hibernate.id.UUIDGenerator"
+//    )
+//    @Column(name = "id", columnDefinition = "VARCHAR(40)")
+//    private UUID id;
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
@@ -35,7 +46,7 @@ public class Offer extends BaseEntity {
     @ManyToOne
     private UserEntity seller;
 
-    public Offer() {
+    public OfferEntity() {
     }
 
     public String getDescription() {

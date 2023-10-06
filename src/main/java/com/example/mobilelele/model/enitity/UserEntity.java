@@ -10,8 +10,8 @@ import java.util.List;
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
     @Column(nullable = false, unique = true)
-    private String username;
-
+    private String email;
+    @Column(nullable = false)
     private String password;
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -23,66 +23,54 @@ public class UserEntity extends BaseEntity {
     @Column(name = "image_url")
     private String imageUrl;
 
-    public UserRoleEntity getRole() {
-        return role;
-    }
-
-    public void setRole(UserRoleEntity role) {
-        this.role = role;
-    }
-
     @ManyToOne
     private UserRoleEntity role;
 
     public UserEntity() {
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public UserEntity setEmail(String email) {
+        this.email = email;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public UserEntity setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public UserEntity setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public UserEntity setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     public boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public UserEntity setActive(boolean active) {
+        this.isActive = active;
+        return this;
     }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
 }

@@ -2,10 +2,17 @@ package com.example.mobilelele.model.enitity;
 
 import com.example.mobilelele.model.enums.Category;
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+
+import java.sql.Types;
+import java.util.UUID;
 
 @Entity
 @Table(name = "models")
 public class ModelEntity extends BaseEntity {
+    @JdbcTypeCode(Types.VARCHAR)
+    private UUID uuid;
+    private String description;
     @Column(nullable = false)
     private String name;
 
