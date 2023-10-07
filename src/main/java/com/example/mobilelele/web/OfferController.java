@@ -1,12 +1,11 @@
 package com.example.mobilelele.web;
 
 import com.example.mobilelele.model.dto.CreateOfferDTO;
+import com.example.mobilelele.model.enums.Engine;
+import com.example.mobilelele.model.enums.Transmission;
 import com.example.mobilelele.service.OfferService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/offers")
@@ -23,6 +22,12 @@ public class OfferController {
     public String all() {
         return "offers";
     }
+
+    @ModelAttribute("engines") //създаваме attribute
+    public Engine[] engines(){
+        return Engine.values();
+    }
+
 
     @GetMapping("/add")
     public String add() {

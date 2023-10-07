@@ -16,7 +16,7 @@
     <form method="POST" 
           class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
         <div class="row">
-
+            <!--Model field-->
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="model">Model</label>
                 <select id="model" class="form-control">
@@ -29,33 +29,50 @@
                     Vechicle model is required.
                 </p>
             </div>
+
+            <!--Price field-->
             <div class="form-group col-md-6 mb-3">
                 <label for="price" class="text-white font-weight-bold">Price</label>
-                <input id="price" type="number" min="0" step="100" class="form-control"
+                <input id="price"
+                       name="price"
+                       type="number"
+                       class="form-control"
                        placeholder="Suggested price"/>
                 <p  class="errors alert alert-danger">
                     Suggested price is required.
                 </p>
             </div>
         </div>
+
         <div class="row">
+            <!--Engine type field-->
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="engine">Engine</label>
-                <select id="engine" class="form-control">
+                <select id="engine"
+                        name="engine"
+                        class="form-control">
                     <option value="">- Select engine type -</option>
-                    <option>
-                        Engine type
+                    <option th:each="e : ${engines}"
+                            th:text="${e}"
+                            th:value="${e}">
                     </option>
                 </select>
                 <p class="errors alert alert-danger">
                     Engine type is required.
                 </p>
             </div>
+
+            <!--Transmission type field-->
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="transmission">Transmission</label>
-                <select id="transmission" class="form-control">
+                <select id="transmission"
+                        name="transmission"
+                        class="form-control">
                     <option value="">- Select transmission type -</option>
-                    <option> Transmission type
+                    <!--Alternative option-->
+                    <option th:each="t : ${T(com.example.mobilelele.model.enums.Transmission).values()}"
+                            th:text="${t}"
+                            th:value="${t}">
                     </option>
                 </select>
                 <p class="errors alert alert-danger">
@@ -64,17 +81,25 @@
             </div>
         </div>
         <div class="row">
+            <!--Manufacturing year field-->
             <div class="form-group col-md-6 mb-3">
                 <label for="year" class="text-white font-weight-bold">Year</label>
-                <input id="year" type="number" min="1900" max="2099" step="1" class="form-control"
+                <input id="year"
+                       name="year"
+                       type="number"
+                       class="form-control"
                        placeholder="Manufacturing year"/>
                 <p class="errors alert alert-danger">
                     Manufacturing year is required.
                 </p>
             </div>
+
+            <!--Mileage field-->
             <div class="form-group col-md-6 mb-3">
                 <label for="mileage" class="text-white font-weight-bold">Mileage</label>
-                <input id="mileage" type="number" min="0" max="900000" step="1000"
+                <input id="mileage"
+                       name="mileage"
+                       type="number"
                        class="form-control"
                        placeholder="Mileage in kilometers"/>
                 <p class="errors alert alert-danger">
@@ -83,23 +108,35 @@
             </div>
         </div>
 
+        <!--Description field-->
         <div class="form-group">
             <label class="text-white font-weight-bold" for="description">Description</label>
-            <textarea id="description" type="textarea" class="form-control" rows="3"
-                      placeholder="Description"></textarea>
+            <textarea id="description"
+                      name="description"
+                      type="textarea"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Description">
+            </textarea>
             <p class="errors alert alert-danger">
                 Description is required.
             </p>
         </div>
+
+        <!--Vehicle img URL field-->
         <div class="form-group">
             <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
-            <input id="imageUrl" type="url" class="form-control"
+            <input id="imageUrl"
+                   name="imageUrl"
+                   type="url"
+                   class="form-control"
                    placeholder="Put vehicle image URL here">
             <p class="errors alert alert-danger">
                 Vehicle image URL is required.
             </p>
         </div>
 
+        <!--Submit btn-->
         <div class="row">
             <div class="col col-md-4">
                 <div class="button-holder d-flex">
@@ -107,6 +144,7 @@
                 </div>
             </div>
         </div>
+
     </form>
 </div>
 
