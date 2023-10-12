@@ -2,9 +2,11 @@ package com.example.mobilelele.model.dto;
 
 import com.example.mobilelele.model.enums.Engine;
 import com.example.mobilelele.model.enums.Transmission;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public record CreateOfferDTO(
-        String description,
+        @NotEmpty  String description,
         Long modelId,
         Engine engine,
         Transmission transmission,
