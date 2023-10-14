@@ -3,6 +3,7 @@ package com.example.mobilelele.model.enitity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -14,6 +15,14 @@ public class BrandEntity extends BaseEntity {
     private List<ModelEntity> models = new ArrayList<>();
 
     public BrandEntity() {
+    }
+
+    public List<ModelEntity> getModels() {
+        return models;
+    }
+
+    public void setModels(List<ModelEntity> models) {
+        this.models = models;
     }
 
     public String getName() {
@@ -32,4 +41,6 @@ public class BrandEntity extends BaseEntity {
                 ", models=" + models +
                 '}';
     }
+
+
 }

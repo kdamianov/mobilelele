@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean loginUser(UserLoginDTO userLoginDTO) {
 
-        var userEntity = userRepository
+         var userEntity = userRepository
                 .findByEmail(userLoginDTO.email())
                 .orElse(null);
 

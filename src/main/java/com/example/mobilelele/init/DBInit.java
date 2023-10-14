@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DBInit implements CommandLineRunner {
-
     private final String defaultAdminPass;
 
     public DBInit(@Value("${default.admin.pass}") String defaultAdminPass) {
@@ -15,6 +14,6 @@ public class DBInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(defaultAdminPass);
+
     }
 }

@@ -1,123 +1,133 @@
 package com.example.mobilelele.model.enitity;
 
+import com.example.mobilelele.model.enitity.BaseEntity;
+import com.example.mobilelele.model.enitity.ModelEntity;
 import com.example.mobilelele.model.enums.Engine;
 import com.example.mobilelele.model.enums.Transmission;
-import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
+import java.sql.Types;
 import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
 
 @Entity
 @Table(name = "offers")
 public class OfferEntity extends BaseEntity {
 
-//    @Id
-//    @GeneratedValue(generator = "UUID")
-//    @GenericGenerator(
-//            name = "UUID",
-//            strategy = "org.hibernate.id.UUIDGenerator"
-//    )
-//    @Column(name = "id", columnDefinition = "VARCHAR(40)")
-//    private UUID id;
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @NotNull
+    @JdbcTypeCode(Types.VARCHAR)
+    private UUID uuid;
+    @NotEmpty
     private String description;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Engine engine;
-
-    @Column
-    private String imageUrl;
-
-    @Column
-    private Integer mileage;
-
-    @Column(nullable = false)
-    private BigDecimal price;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Transmission transmission;
-    @Column
-    private Integer year;
+    @NotNull
     @ManyToOne
     private ModelEntity model;
-    @ManyToOne
-    private UserEntity seller;
 
-    public OfferEntity() {
-    }
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Engine engine;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Transmission transmission;
+
+    @NotEmpty
+    private String imageUrl;
+
+    @Positive
+    private long mileage;
+
+    @NotNull
+    private BigDecimal price;
+
+    @Min(1930)
+    private int year;
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public OfferEntity setDescription(String description) {
         this.description = description;
-    }
-
-    public Engine getEngine() {
-        return engine;
-    }
-
-    public void setEngine(Engine engine) {
-        this.engine = engine;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Integer getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(Integer mileage) {
-        this.mileage = mileage;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public Transmission getTransmission() {
-        return transmission;
-    }
-
-    public void setTransmission(Transmission transmission) {
-        this.transmission = transmission;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
+        return this;
     }
 
     public ModelEntity getModel() {
         return model;
     }
 
-    public void setModel(ModelEntity model) {
+    public OfferEntity setModel(ModelEntity model) {
         this.model = model;
+        return this;
     }
 
-    public UserEntity getSeller() {
-        return seller;
+    public Engine getEngine() {
+        return engine;
     }
 
-    public void setSeller(UserEntity seller) {
-        this.seller = seller;
+    public OfferEntity setEngine(Engine engine) {
+        this.engine = engine;
+        return this;
+    }
+
+    public Transmission getTransmission() {
+        return transmission;
+    }
+
+    public OfferEntity setTransmission(Transmission transmission) {
+        this.transmission = transmission;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public OfferEntity setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public long getMileage() {
+        return mileage;
+    }
+
+    public OfferEntity setMileage(long mileage) {
+        this.mileage = mileage;
+        return this;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public OfferEntity setPrice(BigDecimal price) {
+        this.price = price;
+        return this;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public OfferEntity setYear(int year) {
+        this.year = year;
+        return this;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public OfferEntity setUuid(UUID uuid) {
+        this.uuid = uuid;
+        return this;
     }
 }

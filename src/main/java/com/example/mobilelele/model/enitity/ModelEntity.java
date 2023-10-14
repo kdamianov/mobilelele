@@ -10,9 +10,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "models")
 public class ModelEntity extends BaseEntity {
-    @JdbcTypeCode(Types.VARCHAR)
-    private UUID uuid;
-    private String description;
+
     @Column(nullable = false)
     private String name;
 

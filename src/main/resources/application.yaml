@@ -9,9 +9,9 @@ spring:
       defer-datasource-initialization: true
       hibernate:
         ddl-auto: update
-  sql:
-    init:
-      mode: never
+#  sql:
+#    init:
+#      mode: always
 
 default.admin.pass: ${DEFAULT_ADMIN_PASS}
 logging:

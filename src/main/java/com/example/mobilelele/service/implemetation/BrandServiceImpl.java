@@ -29,12 +29,12 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public List<BrandDTO> getAllBrands() {
 
-        return brandRepository.findAll()
-                .stream()
+        return brandRepository.getAllBrands().stream()
                 .map(brand -> new BrandDTO(
                         brand.getName(),
-                        modelRepository.findAllByBrandId(brand.getId()).stream()
-                                .map(model -> new ModelDTO(model.getId(), model.getName()))
+                        brand.getModels().stream()
+                                .map(model -> new ModelDTO(model.getId(),
+                                        model.getName()))
                                 .sorted(Comparator.comparing(ModelDTO::name))
                                 .collect(Collectors.toList())
                 ))
