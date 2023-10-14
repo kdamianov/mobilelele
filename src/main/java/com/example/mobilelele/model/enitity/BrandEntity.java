@@ -8,10 +8,17 @@ import java.util.List;
 
 @Entity
 @Table(name = "brands")
+//Подобряваме performance-а на app-а, разрешаваме N+1 проблем
+@NamedEntityGraph(
+        name = "brandWithModels",                       //описание
+        attributeNodes = @NamedAttributeNode("models")  //child релация
+)
 public class BrandEntity extends BaseEntity {
     @Column(nullable = false)
     private String name;
-    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "brand",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
     private List<ModelEntity> models = new ArrayList<>();
 
     public BrandEntity() {
