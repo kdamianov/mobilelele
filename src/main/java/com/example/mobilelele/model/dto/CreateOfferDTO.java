@@ -2,6 +2,7 @@ package com.example.mobilelele.model.dto;
 
 import com.example.mobilelele.model.enums.Engine;
 import com.example.mobilelele.model.enums.Transmission;
+import com.example.mobilelele.model.validation.YearNotInFuture;
 import jakarta.validation.constraints.*;
 
 import java.util.Objects;
@@ -26,6 +27,7 @@ public final class CreateOfferDTO {
     @NotNull
     private Integer price;
     @NotNull
+    @YearNotInFuture(message = "Year shoul not be in the future!!!")
     @Min(value = 1930, message = "Year must be after 1930!!!")
     private Integer year;
 

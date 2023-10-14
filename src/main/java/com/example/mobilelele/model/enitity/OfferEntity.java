@@ -4,6 +4,7 @@ import com.example.mobilelele.model.enitity.BaseEntity;
 import com.example.mobilelele.model.enitity.ModelEntity;
 import com.example.mobilelele.model.enums.Engine;
 import com.example.mobilelele.model.enums.Transmission;
+import com.example.mobilelele.model.validation.YearNotInFuture;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -13,9 +14,11 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+
 import java.math.BigDecimal;
 import java.sql.Types;
 import java.util.UUID;
+
 import org.hibernate.annotations.JdbcTypeCode;
 
 @Entity
@@ -46,7 +49,7 @@ public class OfferEntity extends BaseEntity {
 
     @NotNull
     private BigDecimal price;
-
+    @YearNotInFuture
     @Min(1930)
     private int year;
 
