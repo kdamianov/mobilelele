@@ -1,6 +1,7 @@
 package com.example.mobilelele.model.enitity;
 
 import com.example.mobilelele.model.enums.Role;
+import com.example.mobilelele.model.validation.UniqueUserEmail;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
+    @UniqueUserEmail
     @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
