@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head th:replace="~{fragments/head}">
-</head>
+    </head>
 
 <body>
 
@@ -127,7 +127,7 @@
                        class="form-control"
                        placeholder="Mileage in kilometers"/>
                 <p th:if="${#fields.hasErrors('mileage')}"
-                   th:errors="*{mileage}"class="invalid-feedback errors alert alert-danger">
+                   th:errors="*{mileage}" class="invalid-feedback errors alert alert-danger">
                     Mileage in kilometers is required.
                 </p>
             </div>
