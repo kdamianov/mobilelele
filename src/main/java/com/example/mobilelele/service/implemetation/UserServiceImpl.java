@@ -2,6 +2,7 @@ package com.example.mobilelele.service.implemetation;
 
 import com.example.mobilelele.model.dto.UserLoginDTO;
 import com.example.mobilelele.model.dto.UserRegistrationDTO;
+import com.example.mobilelele.model.enitity.OfferEntity;
 import com.example.mobilelele.model.enitity.UserEntity;
 import com.example.mobilelele.repository.UserRepository;
 import com.example.mobilelele.service.UserService;
@@ -27,7 +28,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registerUser(UserRegistrationDTO userRegistrationDTO) {
-        userRepository.save(map(userRegistrationDTO));
+        UserEntity newUser = map(userRegistrationDTO);
+
+
+
+        userRepository.save(newUser);
     }
 
     @Override

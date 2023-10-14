@@ -24,11 +24,14 @@
                 <label for="firstName" class="text-white font-weight-bold">First Name</label>
                 <input id="firstName"
                        th:name="firstName"
+                       th:field="*{firstName}"
                        th:errorclass="is-invalid"
                        type="text"
                        class="form-control"
                        placeholder="First name"/>
-                <p class="invalid-feedback errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('firstName')}"
+                   th:errors="*{firstName}"
+                   class="invalid-feedback errors alert alert-danger">
                     First name is required.
                 </p>
             </div>
@@ -36,11 +39,14 @@
                 <label for="lastName" class="text-white font-weight-bold">Last Name</label>
                 <input id="lastName"
                        th:name="lastName"
+                       th:field="*{lastName}"
                        th:errorclass="is-invalid"
                        type="text"
                        class="form-control"
                        placeholder="Last name"/>
-                <p class="invalid-feedback errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('lastName')}"
+                   th:errors="*{lastName}"
+                   class="invalid-feedback errors alert alert-danger">
                     Last name is required.
                 </p>
             </div>
@@ -50,11 +56,14 @@
                 <label for="email" class="text-white font-weight-bold">Email</label>
                 <input id="email"
                        th:name="email"
+                       th:field="*{email}"
                        th:errorclass="is-invalid"
                        type="text"
                        class="form-control"
                        placeholder="Email"/>
-                <p class="invalid-feedback errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('email')}"
+                   th:errors="*{email}"
+                   class="invalid-feedback errors alert alert-danger">
                     Email is required.
                 </p>
             </div>
@@ -62,11 +71,14 @@
                 <label for="password" class="text-white font-weight-bold">Password</label>
                 <input id="password"
                        th:name="password"
+                       th:field="*{password}"
                        th:errorclass="is-invalid"
                        type="password"
                        class="form-control"
                        placeholder="Password"/>
-                <p class="invalid-feedback errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('password')}"
+                   th:errors="*{password}"
+                   class="invalid-feedback errors alert alert-danger">
                     Password is required.
                 </p>
             </div>
@@ -74,11 +86,14 @@
                 <label for="confirmPassword" class="text-white font-weight-bold">Confirm password</label>
                 <input id="confirmPassword"
                        th:name="confirmPassword"
+                       th:field="*{confirmPassword}"
                        th:errorclass="is-invalid"
                        type="password"
                        class="form-control"
                        placeholder="Confirm password"/>
-                <p class="invalid-feedback errors alert alert-danger">
+                <p th:if="${#fields.hasErrors('confirmPassword')}"
+                   th:errors="*{confirmPassword}"
+                   class="invalid-feedback errors alert alert-danger">
                     Password confirmation is required.
                 </p>
             </div>

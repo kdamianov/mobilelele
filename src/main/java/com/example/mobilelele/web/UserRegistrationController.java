@@ -37,8 +37,8 @@ public class UserRegistrationController {
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
         if(bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("createOfferDTO", userRegistrationDTO);
             redirectAttributes
+                    .addFlashAttribute("createOfferDTO", userRegistrationDTO)
                     .addFlashAttribute("org.springframework.validation.BindingResult.userRegistrationDTO",
                             bindingResult);
 
@@ -47,7 +47,7 @@ public class UserRegistrationController {
 
         userService.registerUser(userRegistrationDTO);
 
-        return "redirect:/";
+        return "redirect:/users/login";
     }
 
 }
