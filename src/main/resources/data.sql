@@ -1,18 +1,29 @@
-INSERT INTO roles (id, `name`)
-values
+INSERT INTO users (id, active, email, first_name, last_name, password)
+VALUES
+    (1, 1, 'admin@example.com', 'Admin', 'Adminov', '95c1933b8ffe84f085f2839899d1673260be58dbd9c2c787ac35515805502c996417596dae9a92880aaa50a046fc7151'),
+    (2, 1, 'user@example.com', 'User', 'Userov', '95c1933b8ffe84f085f2839899d1673260be58dbd9c2c787ac35515805502c996417596dae9a92880aaa50a046fc7151');
+
+
+INSERT INTO roles (`id`, `role`)
+VALUES
     (1, 'ADMIN'),
     (2, 'USER');
 
-INSERT INTO users (id, email, first_name, last_name, image_url, is_active, password)
+INSERT INTO users_roles(`user_id`, `role_id`)
 VALUES
-    (1, 'admin@example.com', 'Admin', 'Adminov', null, 1, 'top');
+    (1, 1),
+    (1, 2),
+    (2, 2);
 
-INSERT INTO brands (id, name)
-VALUES (1, 'Ford'),
-       (2, 'Toyota');
 
-INSERT INTO models (id, name, category, start_year, end_year, brand_id, image_url)
-VALUES (1, 'Fiesta', 'CAR', 1976, null, 1, 'https://upload.wikimedia.org/wikipedia/commons/7/7d/2017_Ford_Fiesta_Zetec_Turbo_1.0_Front.jpg'),
-       (2, 'Escort', 'CAR', 1968, 2000, 1, 'https://www.auto-data.net/images/f110/Ford-Escort-VII-Hatch-GAL-AFL.jpg'),
-       (3, 'Yaris', 'CAR', 1999, null, 2, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/2020_Toyota_Yaris_Design_HEV_CVT_1.5_Front.jpg/1280px-2020_Toyota_Yaris_Design_HEV_CVT_1.5_Front.jpg');
+INSERT INTO `brands` (`id`, `name`)
+VALUES
+    (1, 'Toyota'),
+    (2, 'Ford');
 
+INSERT INTO `models` (`id`, `category`, `brand_id`, `name`)
+VALUES
+    (1, 'CAR', 1, 'Camry'),
+    (2, 'CAR', 1, 'Corolla'),
+    (3, 'CAR', 2, 'Focus'),
+    (4, 'CAR', 2, 'Fiesta');

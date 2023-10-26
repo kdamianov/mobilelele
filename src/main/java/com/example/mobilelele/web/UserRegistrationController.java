@@ -22,10 +22,7 @@ public class UserRegistrationController {
     }
 
     @GetMapping("/register")
-    public String register(Model model) {
-        if(!model.containsAttribute("userRegistrationDTO")) {
-            model.addAttribute("userRegistrationDTO", new UserRegistrationDTO());
-        }
+    public String register() {
         return "auth-register";
     }
 
