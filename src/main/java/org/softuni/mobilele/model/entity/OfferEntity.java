@@ -1,10 +1,6 @@
 package org.softuni.mobilele.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -28,7 +24,6 @@ public class OfferEntity extends BaseEntity{
   @NotNull
   @ManyToOne
   private ModelEntity model;
-
   @NotNull
   @Enumerated(EnumType.STRING)
   private EngineEnum engine;
@@ -37,6 +32,7 @@ public class OfferEntity extends BaseEntity{
   private TransmissionEnum transmission;
 
   @NotEmpty
+  @Column(columnDefinition = "TEXT")
   private String imageUrl;
 
   @Positive
