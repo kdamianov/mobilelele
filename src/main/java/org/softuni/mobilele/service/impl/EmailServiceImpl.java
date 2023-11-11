@@ -26,7 +26,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendRegistrationEmail(String userEmail, String username) {
+    public void sendRegistrationEmail(String userEmail, String username, String activationCode) {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();           //wrapper на мейл съобщение
 
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage); //wrapper на MimeMeassage
@@ -36,7 +36,7 @@ public class EmailServiceImpl implements EmailService {
             mimeMessageHelper.setFrom(mobileleEmail);
             mimeMessageHelper.setReplyTo(mobileleEmail);
             mimeMessageHelper.setSubject("Welcome to MobiLelele!");
-            mimeMessageHelper.setText(generateRegistrationMailBody(username), true);
+            mimeMessageHelper.setText(generateRegistrationMailBody(username, activationCode), true);
 
             javaMailSender.send(mimeMessageHelper.getMimeMessage());
         } catch (MessagingException e) {
@@ -44,10 +44,12 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
-    private String generateRegistrationMailBody(String username) {      //генерираме тялото на mail-а
+    //генерираме тялото на mail-а
+    private String generateRegistrationMailBody(String username, String activationCode) {    //генерираме тялото на mail-а
 
         Context context = new Context();
         context.setVariable("username", username);
+        context.setVariable("activationCode", activationCode);
 
         return templateEngine.process("email/registration-email", context);
     }
