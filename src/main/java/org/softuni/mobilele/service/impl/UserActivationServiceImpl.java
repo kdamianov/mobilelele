@@ -31,7 +31,7 @@ public class UserActivationServiceImpl implements UserActivationService {
         this.userActivationCodeRepository = userActivationCodeRepository;
     }
 
-    @EventListener(UserRegisteredEvent.class)             //анотираме, за да се разбира, че е EventListener
+    @EventListener(UserRegisteredEvent.class)     //анотираме, за да се разбира, че е EventListener
     @Override
     public void userRegistered(UserRegisteredEvent event) {
         String activationCode = createActivationCode(event.getUserEmail());
