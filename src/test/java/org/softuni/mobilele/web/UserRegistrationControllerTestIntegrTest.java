@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @SpringBootTest
 @AutoConfigureMockMvc //вдига се MOck-нат mvc
@@ -39,9 +40,10 @@ class UserRegistrationControllerTestIntegrTest {
     private String password;
 
     private GreenMail greenMail;
+
     @BeforeEach
     void setUp() {
-        greenMail = new GreenMail(new ServerSetup(port, host,"smtp"));
+        greenMail = new GreenMail(new ServerSetup(port, host, "smtp"));
         greenMail.start();
         greenMail.setUser(username, password);
     }
@@ -50,18 +52,20 @@ class UserRegistrationControllerTestIntegrTest {
     void tearDown() {
         greenMail.stop();
     }
+
     @Test
     void testRegistration() throws Exception {
         mockMvc.perform(
-                //изпращаме POST заявка
-                MockMvcRequestBuilders.post("/users/register")
-                        .param("email", "pesho@softuni.bg")
-                        .param("firstName", "Pesho")
-                        .param("lastName", "Petrov")
-                        .param("password", "topsecret")
-                        .param("confirmPassword", "topsecret")
-                        .with(csrf())
-        ).andExpect(status().is3xxRedirection()); //redirect към /home
+                        //изпращаме POST заявка
+                        MockMvcRequestBuilders.post("/users/register")
+                                .param("email", "pesho@softuni.bg")
+                                .param("firstName", "Pesho")
+                                .param("lastName", "Petrov")
+                                .param("password", "topsecret")
+                                .param("confirmPassword", "topsecret")
+                                .with(csrf())
+                ).andExpect(status().is3xxRedirection())   //redirect към /home
+                .andExpect(view().name("redirect:/"));
 
         //DUMMY MAIL
         greenMail.waitForIncomingEmail(1);
