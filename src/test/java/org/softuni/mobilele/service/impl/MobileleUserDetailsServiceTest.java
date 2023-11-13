@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 //анотира се, тк ни трябва някакво Repo
@@ -50,17 +51,17 @@ class MobileleUserDetailsServiceTest {
         UserDetails userDetails = serviceToTest.loadUserByUsername(testUser.getEmail());
 
         //Assert
-        Assertions.assertNotNull(userDetails);
-        Assertions.assertEquals(
+        assertNotNull(userDetails);
+        assertEquals(
                 testUser.getEmail(),
                 userDetails.getUsername(),
                 "Username is not mapped to email!"
         );
-        Assertions.assertEquals(testUser.getPassword(), userDetails.getPassword());
-        Assertions.assertEquals(2, userDetails.getAuthorities().size());
-        Assertions.assertTrue(containsAuthority(userDetails, "ROLE_" + UserRoleEnum.ADMIN),
+        assertEquals(testUser.getPassword(), userDetails.getPassword());
+        assertEquals(2, userDetails.getAuthorities().size());
+        assertTrue(containsAuthority(userDetails, "ROLE_" + UserRoleEnum.ADMIN),
                 "The user is not ADMIN!");
-        Assertions.assertTrue(containsAuthority(userDetails, "ROLE_" + UserRoleEnum.USER),
+        assertTrue(containsAuthority(userDetails, "ROLE_" + UserRoleEnum.USER),
                 "The user is not USER!");
     }
 
