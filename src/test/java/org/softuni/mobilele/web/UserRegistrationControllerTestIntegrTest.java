@@ -2,7 +2,9 @@ package org.softuni.mobilele.web;
 
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.ServerSetup;
+import jakarta.mail.internet.MimeMessage;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -59,6 +62,16 @@ class UserRegistrationControllerTestIntegrTest {
                         .param("confirmPassword", "topsecret")
                         .with(csrf())
         ).andExpect(status().is3xxRedirection()); //redirect към /home
+
+        //DUMMY MAIL
+        greenMail.waitForIncomingEmail(1);
+        MimeMessage[] receivedMessages = greenMail.getReceivedMessages();
+        assertEquals(1, receivedMessages.length);
+        MimeMessage registrationMessage = receivedMessages[0];
+
+        Assertions.assertTrue(registrationMessage.getContent().toString().contains("Pesho"));
+        assertEquals(1, registrationMessage.getAllRecipients().length);
+        assertEquals("pesho@softuni.bg", registrationMessage.getAllRecipients()[0].toString());
     }
 
 }
